@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    inlineCss: true,
+  },
+  images: {
+    qualities: [60, 75],
+  },
   async redirects() {
     return [
       {

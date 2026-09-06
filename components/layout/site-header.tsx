@@ -92,6 +92,7 @@ export function SiteHeader() {
                 height={594}
                 sizes="(max-width: 639px) 142px, 160px"
                 loading="eager"
+                fetchPriority="high"
                 className={cn(
                   "h-auto w-[142px] transition-[width] duration-200 sm:w-[160px]",
                   scrolled && "md:w-[148px]",
