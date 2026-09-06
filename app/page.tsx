@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <section className="route-grid relative isolate -mt-20 min-h-[calc(100svh+2rem)] overflow-hidden bg-carbon-deep text-white md:-mt-24">
-        <Image src="/images/company/caminhao-gercadi-estrada.jpg" alt="Caminhão da Gercadi em operação ao pôr do sol" fill preload quality={60} sizes="100vw" className="page-hero-media object-cover object-[62%_center] opacity-70" />
+        <Image src="/images/company/caminhao-gercadi-estrada.jpg" alt="Caminhão da Gercadi em operação ao pôr do sol" fill preload quality={45} sizes="(max-width: 767px) 60vw, 100vw" className="page-hero-media object-cover object-[62%_center] opacity-70" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#090c0a_0%,rgba(9,12,10,.92)_42%,rgba(9,12,10,.35)_78%,rgba(9,12,10,.55)_100%)]" />
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-55" viewBox="0 0 1440 900" fill="none" aria-hidden="true">
           <path className="route-line" d="M-80 735C214 677 324 787 507 643C713 481 772 332 1035 263C1194 221 1282 129 1511 56" stroke="#C91D24" strokeWidth="3" />
@@ -88,7 +88,7 @@ export default function Home() {
               return (
                 <article key={service.title} className={`group grid gap-8 py-12 md:grid-cols-12 md:items-center md:py-16 reveal-delay-${index + 1}`} data-reveal>
                   <div className={`image-reveal relative aspect-[16/10] overflow-hidden rounded-xl md:col-span-5 ${index % 2 ? "md:col-start-8 md:row-start-1" : ""}`}>
-                    <Image src={service.image} alt={`Operação Gercadi — ${service.title}`} fill sizes="(max-width: 768px) 100vw, 42vw" className="object-cover grayscale-[20%]" />
+                    <Image src={service.image} alt={`Operação Gercadi — ${service.title}`} fill quality={50} sizes="(max-width: 767px) 50vw, 42vw" className="object-cover grayscale-[20%]" />
                     <span className="absolute left-4 top-4 flex size-11 items-center justify-center rounded-full bg-paper text-carbon"><Icon className="size-5" aria-hidden="true" /></span>
                   </div>
                   <div className={`md:col-span-5 ${index % 2 ? "md:col-start-1 md:row-start-1" : "md:col-start-7"}`}>

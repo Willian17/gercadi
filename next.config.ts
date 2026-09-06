@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     inlineCss: true,
   },
   images: {
-    qualities: [60, 75],
+    qualities: [45, 50, 60, 75],
   },
   async redirects() {
     return [
