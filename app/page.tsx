@@ -5,7 +5,7 @@ import { TrackingLink } from "@/components/shared-links";
 import { QuotationForm } from "@/components/forms/quotation-form";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
-import { CoverageMap } from "@/components/coverage-map";
+import { DeferredCoverageMap } from "@/components/deferred-coverage-map";
 
 const serviceChapters = [
   { index: "01", title: "Carga fracionada", text: "Controle, agilidade e segurança para volumes de diferentes portes, com acompanhamento de coleta e entrega.", href: "/frota", image: "/images/company/frota-centro-operacional.jpg", icon: PackageCheck },
@@ -27,8 +27,8 @@ export default function Home() {
         <div className="site-container relative z-10 flex min-h-[calc(100svh+2rem)] items-end pb-10 pt-44 sm:pb-14 md:pt-48 lg:pb-20">
           <div className="w-full">
             <div className="hero-eyebrow mb-8 flex items-center gap-4 text-[10px] font-extrabold uppercase tracking-[.25em] text-white/65"><span className="h-px w-12 bg-action-red" />Gercadi • Transporte e logística</div>
-            <h1 className="hero-title display-condensed max-w-[980px] text-[clamp(3.5rem,7.5vw,7rem)] uppercase">
-              Mato Grosso<br /><span className="text-white/36">não para.</span><br />Sua carga também não.
+            <h1 className="hero-title hero-title-lines display-condensed max-w-[980px] text-[clamp(3.5rem,7.5vw,7rem)] uppercase">
+              <span className="hero-title-line">Mato Grosso</span><span className="hero-title-line text-white/36">não para.</span><span className="hero-title-line">Sua carga também não.</span>
             </h1>
             <div className="hero-copy mt-10 grid gap-8 border-t border-white/20 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
               <p className="max-w-xl text-base leading-7 text-white/72 sm:text-lg">Há mais de 35 anos, conectamos empresas e cidades com presença regional, atendimento próximo e operação em movimento.</p>
@@ -39,7 +39,7 @@ export default function Home() {
       </section>
 
       <section aria-label="Ações principais" className="relative z-20 bg-paper">
-        <div className="site-container -translate-y-1/2">
+        <div className="site-container md:-translate-y-1/2">
           <div className="grid overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_24px_70px_rgba(9,12,10,.18)] md:grid-cols-2" data-reveal>
             <Link href="/cotacao" className="group flex min-h-28 items-center justify-between bg-action-red p-6 text-white transition-colors hover:bg-[#aa171d] sm:p-8">
               <span><span className="block text-[10px] font-extrabold uppercase tracking-[.22em] text-white/70">Nova operação</span><strong className="mt-2 block text-2xl tracking-[-.04em] sm:text-3xl">Solicitar cotação</strong></span>
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="operacao" className="paper-grid section-space -mt-14 overflow-hidden bg-paper">
+      <section id="operacao" className="paper-grid section-space overflow-hidden bg-paper md:-mt-14">
         <div className="site-container">
           <div className="grid gap-14 lg:grid-cols-12 lg:items-end" data-reveal>
             <div className="lg:col-span-7">
@@ -86,7 +86,7 @@ export default function Home() {
             {serviceChapters.map((service, index) => {
               const Icon = service.icon;
               return (
-                <article key={service.title} className="group grid gap-8 py-12 md:grid-cols-12 md:items-center md:py-16" data-reveal>
+                <article key={service.title} className={`group grid gap-8 py-12 md:grid-cols-12 md:items-center md:py-16 reveal-delay-${index + 1}`} data-reveal>
                   <div className={`image-reveal relative aspect-[16/10] overflow-hidden rounded-xl md:col-span-5 ${index % 2 ? "md:col-start-8 md:row-start-1" : ""}`}>
                     <Image src={service.image} alt={`Operação Gercadi — ${service.title}`} fill sizes="(max-width: 768px) 100vw, 42vw" className="object-cover grayscale-[20%]" />
                     <span className="absolute left-4 top-4 flex size-11 items-center justify-center rounded-full bg-paper text-carbon"><Icon className="size-5" aria-hidden="true" /></span>
@@ -112,7 +112,7 @@ export default function Home() {
             <p className="mt-8 max-w-md text-lg leading-8 text-muted">Encontre o contato da unidade mais próxima ou consulte a relação de cidades atendidas e prazos operacionais.</p>
             <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg"><Link href="/nossas-unidades">Encontrar unidade <ArrowRight className="size-4" /></Link></Button><Button asChild variant="outline" size="lg"><a href={siteConfig.coverageSheetUrl} target="_blank" rel="noopener noreferrer">Cidades e prazos</a></Button></div>
           </div>
-          <div className="lg:col-span-6 lg:col-start-7" data-reveal="media"><CoverageMap compact /></div>
+          <DeferredCoverageMap compact className="lg:col-span-6 lg:col-start-7" />
         </div>
       </section>
 

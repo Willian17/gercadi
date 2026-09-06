@@ -18,7 +18,7 @@ export default function CollectionPage() {
         [Clock3, "Coleta expressa", "Atendimento para demandas no mesmo dia. Consulte disponibilidade e prazo para sua cidade."],
         [CalendarDays, "Coleta programada", "Agendamento com data e período definidos para organizar sua operação."],
         [PackageOpen, "Coleta especial", "Avaliação específica para cargas especiais ou volumes maiores."],
-      ].map(([Icon, title, text]) => { const ItemIcon = Icon as typeof Clock3; return <article key={String(title)} className="rounded-lg border border-border bg-surface p-7"><ItemIcon className="size-7 text-action-red" /><h2 className="mt-6 text-2xl font-bold text-ink">{String(title)}</h2><p className="mt-3 text-sm leading-6 text-muted">{String(text)}</p></article>; })}</div></div></section>
+      ].map(([Icon, title, text], index) => { const ItemIcon = Icon as typeof Clock3; return <article key={String(title)} className={`operational-card p-7 reveal-delay-${index + 1}`} data-reveal><ItemIcon className="size-7 text-action-red" /><span className="mt-10 block font-mono text-[10px] font-bold tracking-[.18em] text-muted">0{index + 1} / 03</span><h2 className="mt-4 text-2xl font-bold text-ink">{String(title)}</h2><p className="mt-3 text-sm leading-6 text-muted">{String(text)}</p></article>; })}</div></div></section>
       <section className="section-space bg-surface"><div className="site-container grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:items-start"><SectionHeading eyebrow="Solicitar coleta" title="Envie os detalhes pelo WhatsApp" description="Os dados são usados apenas para preparar a mensagem. A solicitação será enviada ao canal oficial de coleta." /><CollectionForm /></div></section>
     </>
   );

@@ -19,8 +19,8 @@ export default function CompanyPage() {
       <PageHero eyebrow="Empresa" title="Mais de 35 anos movendo negócios e conectando cidades" description="Soluções em transporte e logística com agilidade, tecnologia, segurança e uma equipe próxima do cliente." image="/images/company/matriz-cuiaba.jpg" imageAlt="Matriz da Gercadi em Cuiabá" actions={<QuoteLink size="lg" />} />
       <section className="section-space bg-white">
         <div className="site-container grid items-center gap-14 lg:grid-cols-2">
-          <div className="relative aspect-[5/3] overflow-hidden rounded-lg"><Image src="/images/company/carreta-gercadi.jpg" alt="Carreta da Gercadi Transportes e Logística" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
-          <div>
+          <div className="image-reveal relative aspect-[5/3] overflow-hidden rounded-lg" data-reveal="media"><Image src="/images/company/carreta-gercadi.jpg" alt="Carreta da Gercadi Transportes e Logística" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
+          <div data-reveal>
             <SectionHeading eyebrow="Nossa história" title="Uma operação construída para aproximar empresas e destinos" />
             <div className="mt-6 space-y-4 text-base leading-7 text-muted">
               <p>O grupo Gercadi Transportes atua no mercado há mais de 35 anos, oferecendo soluções para coletar, movimentar e entregar mercadorias.</p>
@@ -35,9 +35,9 @@ export default function CompanyPage() {
             [Target, "Missão", "Superar as expectativas dos clientes com qualidade, segurança e rapidez, apoiados por uma equipe profissional e motivada."],
             [Eye, "Visão", "Ser referência positiva em serviços logísticos eficientes, com competência técnica e responsabilidade ambiental e social."],
             [HeartHandshake, "Valores", null],
-          ].map(([Icon, title, text]) => {
+          ].map(([Icon, title, text], index) => {
             const ItemIcon = Icon as typeof Target;
-            return <article key={String(title)} className="rounded-lg border border-border bg-white p-7"><ItemIcon className="size-7 text-action-red" aria-hidden="true" /><h2 className="mt-6 text-2xl font-bold text-ink">{String(title)}</h2>{text ? <p className="mt-4 text-sm leading-6 text-muted">{String(text)}</p> : <ul className="mt-4 space-y-3">{values.map((value) => <li key={value} className="flex gap-2 text-sm leading-6 text-muted"><CheckCircle2 className="mt-1 size-4 shrink-0 text-tracking-green" aria-hidden="true" />{value}</li>)}</ul>}</article>;
+            return <article key={String(title)} className={`operational-card p-7 reveal-delay-${index + 1}`} data-reveal><ItemIcon className="size-7 text-action-red" aria-hidden="true" /><span className="mt-10 block font-mono text-[10px] font-bold tracking-[.18em] text-muted">0{index + 1} / 03</span><h2 className="mt-4 text-2xl font-bold text-ink">{String(title)}</h2>{text ? <p className="mt-4 text-sm leading-6 text-muted">{String(text)}</p> : <ul className="mt-4 space-y-3">{values.map((value) => <li key={value} className="flex gap-2 text-sm leading-6 text-muted"><CheckCircle2 className="mt-1 size-4 shrink-0 text-tracking-green" aria-hidden="true" />{value}</li>)}</ul>}</article>;
           })}
         </div>
       </section>
@@ -45,4 +45,3 @@ export default function CompanyPage() {
     </>
   );
 }
-

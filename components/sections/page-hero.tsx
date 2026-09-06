@@ -52,7 +52,7 @@ export function PageHero({
           </ol>
         </nav>
         <div className="max-w-3xl">
-          <p className="hero-eyebrow eyebrow eyebrow-inverse">Capítulo • {eyebrow}</p>
+          <p className="hero-eyebrow eyebrow eyebrow-inverse">Gercadi • {eyebrow}</p>
           <h1 className="hero-title display-condensed text-balance text-[clamp(3.25rem,6.5vw,6rem)] uppercase">
             {title}
           </h1>

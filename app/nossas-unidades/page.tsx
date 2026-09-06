@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
 import { PageHero } from "@/components/sections/page-hero";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { CoverageMap } from "@/components/coverage-map";
+import { DeferredCoverageMap } from "@/components/deferred-coverage-map";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
 
@@ -19,7 +19,7 @@ export default function UnitsPage() {
       <section className="section-space bg-surface">
         <div className="site-container">
           <SectionHeading eyebrow="Mapa de atendimento" title="Escolha uma cidade. Encontre o caminho." description="Filiais aparecem em destaque; as demais localidades exibem a frequência ou prazo operacional disponível na relação da Gercadi." />
-          <div className="mt-12"><CoverageMap /></div>
+          <div className="mt-12"><DeferredCoverageMap /></div>
         </div>
       </section>
       <section className="section-space bg-white">

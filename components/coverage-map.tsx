@@ -31,7 +31,7 @@ function Marker({ location, active, onSelect }: { location: CoverageLocation; ac
       type="button"
       style={position}
       onClick={() => onSelect(location)}
-      className={`group absolute z-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-forest ${isUnit ? "size-7" : "size-4"}`}
+      className={`map-marker group absolute z-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-forest ${isUnit ? "size-11" : "size-8"} ${active ? "map-marker-active" : ""}`}
       aria-label={`${location.name}: ${isUnit ? "filial" : "cidade atendida"}${location.schedule ? `, ${location.schedule}` : ""}`}
       aria-pressed={active}
     >
@@ -61,15 +61,20 @@ function LocationPanel({ location, onClose, compact }: { location: CoverageLocat
 }
 
 export function CoverageMap({ compact = false, className }: CoverageMapProps) {
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("unit");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(() => coverageLocations.find((location) => location.slug === "cuiaba")?.id);
   const selected = coverageLocations.find((location) => location.id === selectedId);
   const filtered = useMemo(() => {
     const normalizedQuery = normalize(query.trim());
-    return coverageLocations.filter((location) => (filter === "all" || location.kind === filter) && (!normalizedQuery || normalize(location.name).includes(normalizedQuery)));
+    const isSearching = normalizedQuery.length > 0;
+    return coverageLocations.filter((location) => (isSearching || filter === "all" || location.kind === filter) && (!normalizedQuery || normalize(location.name).includes(normalizedQuery)));
   }, [filter, query]);
-  const visibleMarkers = useMemo(() => filtered.filter((location) => location.x !== undefined && location.y !== undefined), [filtered]);
+  const visibleMarkers = useMemo(() => {
+    const markers = filtered.filter((location) => location.x !== undefined && location.y !== undefined);
+    if (selected?.x === undefined || selected?.y === undefined || markers.some((location) => location.id === selected.id)) return markers;
+    return [...markers, selected];
+  }, [filtered, selected]);
   const suggestions = query.trim() ? filtered.slice(0, 7) : [];
   const unitsCount = coverageLocations.filter((location) => location.kind === "unit").length;
   const servedCount = coverageLocations.filter((location) => location.kind === "served").length;
@@ -98,9 +103,9 @@ export function CoverageMap({ compact = false, className }: CoverageMapProps) {
           {!compact && <div className="relative z-20 mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar localidades">{([{ id: "all", label: "Todas" }, { id: "unit", label: "Filiais" }, { id: "served", label: "Cidades atendidas" }] as const).map((item) => <button type="button" key={item.id} onClick={() => setFilter(item.id)} aria-pressed={filter === item.id} className={`min-h-10 rounded-full border px-4 text-xs font-extrabold transition-colors ${filter === item.id ? "border-carbon bg-carbon text-white" : "border-black/10 bg-white text-ink hover:bg-ivory"}`}>{item.label}</button>)}</div>}
 
           <div className="relative mt-4 aspect-[10/11] min-h-[380px] overflow-hidden rounded-xl border border-white/15 bg-carbon-deep sm:min-h-[520px]">
-            <svg className="absolute inset-0 h-full w-full" viewBox={mapViewBox} aria-hidden="true">
+            <svg className="coverage-territory absolute inset-0 h-full w-full" viewBox={mapViewBox} aria-hidden="true">
               <rect width="1000" height="1100" fill="#043720" />
-              {mtMunicipalityPaths.map((path) => <path key={path.code} d={path.d} fill="#075532" stroke="rgba(250,250,247,.17)" strokeWidth="1.2" />)}
+              {mtMunicipalityPaths.map((path) => <path className="coverage-boundary" key={path.code} d={path.d} fill="#075532" stroke="rgba(250,250,247,.17)" strokeWidth="1.2" />)}
             </svg>
             <div className="absolute inset-0">{visibleMarkers.map((location) => <Marker key={location.id} location={location} active={selected?.id === location.id} onSelect={selectLocation} />)}</div>
             {selected?.x !== undefined && selected?.y !== undefined && <div style={{ left: `${selected.x / 10}%`, top: `${selected.y / 11}%` }} className="pointer-events-none absolute z-20 -translate-x-1/2 -translate-y-[calc(100%+1rem)] rounded-full bg-paper px-3 py-1.5 text-xs font-extrabold text-carbon shadow-xl">{selected.name}</div>}
