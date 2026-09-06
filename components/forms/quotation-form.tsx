@@ -10,7 +10,7 @@ import { siteConfig } from "@/data/site";
 import { createWhatsappUrl, openWhatsapp } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
-export function QuotationForm({ inverse = false }: { inverse?: boolean }) {
+export function QuotationForm({ inverse = false, defaultDestination }: { inverse?: boolean; defaultDestination?: string }) {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -50,7 +50,7 @@ export function QuotationForm({ inverse = false }: { inverse?: boolean }) {
           <Input id="quote-origin" name="origem" autoComplete="address-level2" required placeholder="Cidade / UF" />
         </Field>
         <Field id="quote-destination" label="Destino *">
-          <Input id="quote-destination" name="destino" autoComplete="off" required placeholder="Cidade / UF" />
+          <Input id="quote-destination" name="destino" autoComplete="off" required placeholder="Cidade / UF" defaultValue={defaultDestination} />
         </Field>
         <Field id="quote-cargo" label="Tipo de carga *">
           <Input id="quote-cargo" name="carga" required placeholder="Ex.: caixas, autopeças" />

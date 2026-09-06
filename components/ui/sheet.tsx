@@ -16,10 +16,10 @@ export function SheetContent({
 }: React.ComponentProps<typeof SheetPrimitive.Content>) {
   return (
     <SheetPrimitive.Portal>
-      <SheetPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/55" />
+      <SheetPrimitive.Overlay className="mobile-menu-overlay fixed inset-0 z-50 bg-ink/55" />
       <SheetPrimitive.Content
         className={cn(
-          "fixed inset-y-0 right-0 z-50 w-[min(90vw,380px)] overflow-y-auto border-l border-border bg-white p-6 shadow-2xl outline-none",
+          "mobile-menu-panel fixed inset-y-0 right-0 z-50 w-[min(90vw,380px)] overflow-y-auto border-l border-border bg-white p-6 shadow-2xl outline-none",
           className,
         )}
         {...props}

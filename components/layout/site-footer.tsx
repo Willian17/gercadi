@@ -9,7 +9,7 @@ export function SiteFooter() {
     <footer className="route-grid bg-carbon-deep text-white">
       <div className="site-container border-b border-white/15 py-16 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7"><p className="text-[10px] font-extrabold uppercase tracking-[.24em] text-white/50">Gercadi Transportes e Logística</p><h2 className="display-condensed mt-6 text-[clamp(4rem,8vw,8rem)] uppercase">A próxima rota<br /><span className="text-white/30">começa aqui.</span></h2></div>
+          <div className="lg:col-span-7" data-reveal><p className="text-[10px] font-extrabold uppercase tracking-[.24em] text-white/50">Gercadi Transportes e Logística</p><h2 className="display-condensed mt-6 text-[clamp(3.5rem,6.5vw,6rem)] uppercase">A próxima rota<br /><span className="text-white/30">começa aqui.</span></h2></div>
           <div className="grid gap-3 lg:col-span-4 lg:col-start-9"><QuoteLink size="lg" className="w-full" /><TrackingLink size="lg" variant="light" className="w-full" /></div>
         </div>
       </div>

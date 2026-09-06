@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MotionObserver } from "@/components/motion-observer";
 import { siteConfig } from "@/data/site";
 
 const inter = localFont({
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="pt-BR" className={inter.variable} data-scroll-behavior="smooth">
       <body className="min-h-screen bg-paper text-ink antialiased">
         <a href="#conteudo" className="skip-link">Ir para o conteúdo</a>
+        <MotionObserver />
         <SiteHeader />
         <main id="conteudo">{children}</main>
         <SiteFooter />

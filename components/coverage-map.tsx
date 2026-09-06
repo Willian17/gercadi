@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Building2, CalendarDays, MapPin, Route, Search, X } from "lucide-react";
+import { ArrowUpRight, Building2, CalendarDays, Route, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { coverageLocations, mapViewBox, mtMunicipalityPaths, type CoverageLocation } from "@/data/coverage-map";
 

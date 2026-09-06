@@ -24,13 +24,14 @@ export function SectionHeading({
         align === "center" && "mx-auto text-center",
         className,
       )}
+      data-reveal
     >
       {eyebrow && (
         <p className={cn("eyebrow", inverse && "eyebrow-inverse")}>{eyebrow}</p>
       )}
       <h2
         className={cn(
-          "text-balance text-4xl font-extrabold tracking-[-0.055em] sm:text-5xl lg:text-6xl",
+          "text-balance text-4xl font-extrabold tracking-[-0.05em] sm:text-[2.75rem] lg:text-5xl",
           inverse ? "text-white" : "text-ink",
         )}
       >

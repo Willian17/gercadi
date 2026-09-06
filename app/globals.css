@@ -72,6 +72,7 @@ button, a, summary { touch-action: manipulation; }
 }
 
 .nav-link {
+  position: relative;
   display: inline-flex;
   min-height: 2.75rem;
   cursor: pointer;
@@ -85,6 +86,19 @@ button, a, summary { touch-action: manipulation; }
 }
 
 .nav-link:hover { background: var(--ivory); color: var(--action-red); }
+
+.nav-link-active { color: var(--action-red); }
+
+.nav-link-active::after {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.3rem;
+  left: 0.9rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--action-red);
+  content: "";
+}
 
 .footer-title {
   color: #fff;
@@ -127,6 +141,91 @@ button, a, summary { touch-action: manipulation; }
 
 @keyframes route-flow { to { stroke-dashoffset: -220; } }
 
+.mobile-menu-overlay[data-state="open"] { animation: menu-overlay-in 180ms ease-out both; }
+.mobile-menu-overlay[data-state="closed"] { animation: menu-overlay-out 140ms ease-in both; }
+.mobile-menu-panel[data-state="open"] { animation: menu-panel-in 260ms cubic-bezier(.2,.75,.2,1) both; }
+.mobile-menu-panel[data-state="closed"] { animation: menu-panel-out 180ms ease-in both; }
+
+@keyframes menu-overlay-in { from { opacity: 0; } }
+@keyframes menu-overlay-out { to { opacity: 0; } }
+@keyframes menu-panel-in { from { transform: translateX(100%); } }
+@keyframes menu-panel-out { to { transform: translateX(100%); } }
+
+.hero-breadcrumb { animation: hero-rise 420ms 60ms ease-out both; }
+.hero-eyebrow { animation: hero-rise 480ms 130ms ease-out both; }
+.hero-title { animation: hero-title-in 700ms 180ms cubic-bezier(.2,.75,.2,1) both; }
+.hero-copy { animation: hero-rise 540ms 360ms ease-out both; }
+.hero-actions { animation: hero-rise 540ms 440ms ease-out both; }
+.page-hero-media { animation: hero-media-in 900ms cubic-bezier(.2,.75,.2,1) both; }
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-title-in {
+  from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(24px); }
+  to { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-media-in {
+  from { opacity: 0; transform: scale(1.03); }
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 560ms ease-out var(--reveal-delay, 0ms),
+      transform 620ms cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal="media"] {
+    clip-path: inset(0 0 12% 0);
+    transform: translateY(18px) scale(1.015);
+    transition:
+      clip-path 720ms cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms),
+      opacity 480ms ease-out var(--reveal-delay, 0ms),
+      transform 720ms cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal][data-reveal-visible="true"] {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page-exit) {
+  animation: page-out 150ms ease-in both;
+}
+
+::view-transition-new(.page-enter) {
+  animation: page-in 260ms 80ms cubic-bezier(.2,.75,.2,1) both;
+}
+
+::view-transition-group(site-header) {
+  z-index: 100;
+  animation: none;
+}
+
+::view-transition-old(site-header) { display: none; }
+::view-transition-new(site-header) { animation: none; }
+
+@keyframes page-out {
+  to { opacity: 0; filter: blur(1px); transform: translateY(-3px); }
+}
+
+@keyframes page-in {
+  from { opacity: 0; filter: blur(1px); transform: translateY(8px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
 .image-reveal { overflow: hidden; }
 .image-reveal img { transition: transform 700ms cubic-bezier(.2,.7,.2,1), filter 300ms ease; }
 .image-reveal:hover img { transform: scale(1.025); }
@@ -152,5 +251,11 @@ input, textarea, select { font: inherit; }
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
