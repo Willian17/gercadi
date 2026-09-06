@@ -16,7 +16,7 @@ export function SiteFooter() {
 
       <div className="site-container grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <Image src="/images/brand/gercadi-logo.png" alt="Gercadi Transportes e Logística" width={1920} height={594} className="h-auto w-[220px] rounded-lg bg-white p-2" />
+          <Image src="/images/brand/gercadi-logo.png" alt="Gercadi Transportes e Logística" width={1920} height={594} sizes="220px" className="h-auto w-[220px] rounded-lg bg-white p-2" />
           <p className="mt-6 max-w-sm text-sm leading-6 text-white/60">Mais de 35 anos conectando empresas e cidades com soluções em transporte e logística em Mato Grosso.</p>
           <div className="mt-7 flex gap-5 text-xs font-bold uppercase tracking-[.12em]"><a href={siteConfig.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-action-red">Facebook <ExternalLink className="size-3" /></a><a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-action-red">Instagram <ExternalLink className="size-3" /></a></div>
         </div>

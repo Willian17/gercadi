@@ -35,7 +35,7 @@ function Marker({ location, active, onSelect }: { location: CoverageLocation; ac
       aria-label={`${location.name}: ${isUnit ? "filial" : "cidade atendida"}${location.schedule ? `, ${location.schedule}` : ""}`}
       aria-pressed={active}
     >
-      <span className={`absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-200 ${isUnit ? "size-3.5 bg-action-red ring-4 ring-paper shadow-[0_0_0_2px_rgba(201,29,36,.35)]" : "size-2 bg-white/80"} ${active ? "scale-150 bg-paper ring-4 ring-action-red" : "group-hover:scale-150"}`} />
+      <span className={`absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-200 ${isUnit ? "size-3.5 bg-action-red ring-4 ring-paper shadow-[0_0_0_2px_rgba(201,29,36,.35)]" : "size-2 bg-white/80"} ${active ? "scale-125 bg-paper ring-2 ring-action-red md:scale-150 md:ring-4" : "group-hover:scale-150"}`} />
     </button>
   );
 }
@@ -47,11 +47,11 @@ function LocationPanel({ location, onClose, compact }: { location: CoverageLocat
       {onClose && <button type="button" onClick={onClose} className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full hover:bg-black/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-red" aria-label="Fechar detalhes"><X className="size-4" /></button>}
       <div className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[.18em] text-action-red"><span className={`size-2 rounded-full ${isUnit ? "bg-action-red" : "bg-tracking-green"}`} />{isUnit ? "Filial Gercadi" : "Cidade atendida"}</div>
       <h3 className="mt-4 text-3xl font-extrabold tracking-[-.055em]">{location.name}</h3>
-      <dl className={`mt-7 space-y-4 border-t pt-5 text-sm ${compact ? "border-white/15" : "border-black/10"}`}>
-        {location.schedule && <div className="flex gap-3"><CalendarDays className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><dt className="font-bold">Frequência / prazo</dt><dd className={compact ? "text-white/65" : "text-muted"}>{location.schedule}</dd></div></div>}
-        {location.hubName && <div className="flex gap-3"><Building2 className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><dt className="font-bold">Unidade de referência</dt><dd className={compact ? "text-white/65" : "text-muted"}>{location.hubName}</dd></div></div>}
-        {location.region && <div className="flex gap-3"><Route className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><dt className="font-bold">Região operacional</dt><dd className={compact ? "text-white/65" : "text-muted"}>{location.region}</dd></div></div>}
-      </dl>
+      <ul className={`mt-7 space-y-4 border-t pt-5 text-sm ${compact ? "border-white/15" : "border-black/10"}`}>
+        {location.schedule && <li className="flex gap-3"><CalendarDays className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><p className="font-bold">Frequência / prazo</p><p className={compact ? "text-white/65" : "text-muted"}>{location.schedule}</p></div></li>}
+        {location.hubName && <li className="flex gap-3"><Building2 className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><p className="font-bold">Unidade de referência</p><p className={compact ? "text-white/65" : "text-muted"}>{location.hubName}</p></div></li>}
+        {location.region && <li className="flex gap-3"><Route className={`mt-0.5 size-4 shrink-0 ${compact ? "text-white/55" : "text-tracking-green"}`} /><div><p className="font-bold">Região operacional</p><p className={compact ? "text-white/65" : "text-muted"}>{location.region}</p></div></li>}
+      </ul>
       <div className="mt-7 grid gap-3">
         <Link href={getLocationLink(location)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-action-red px-5 text-sm font-extrabold text-white transition-colors hover:bg-[#a9151b]">Solicitar cotação <ArrowUpRight className="size-4" /></Link>
         {location.slug && <Link href={`/unidades/${location.slug}`} className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-5 text-sm font-extrabold transition-colors ${compact ? "border-white/25 text-white hover:bg-white hover:text-carbon" : "border-black/15 text-ink hover:bg-white"}`}>Ver unidade <ArrowUpRight className="size-4" /></Link>}
@@ -108,9 +108,8 @@ export function CoverageMap({ compact = false, className }: CoverageMapProps) {
               {mtMunicipalityPaths.map((path) => <path className="coverage-boundary" key={path.code} d={path.d} fill="#075532" stroke="rgba(250,250,247,.17)" strokeWidth="1.2" />)}
             </svg>
             <div className="absolute inset-0">{visibleMarkers.map((location) => <Marker key={location.id} location={location} active={selected?.id === location.id} onSelect={selectLocation} />)}</div>
-            {selected?.x !== undefined && selected?.y !== undefined && <div style={{ left: `${selected.x / 10}%`, top: `${selected.y / 11}%` }} className="pointer-events-none absolute z-20 -translate-x-1/2 -translate-y-[calc(100%+1rem)] rounded-full bg-paper px-3 py-1.5 text-xs font-extrabold text-carbon shadow-xl">{selected.name}</div>}
-            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-lg border border-white/15 bg-carbon-deep/80 px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-white/60 backdrop-blur"><span>Mapa de Mato Grosso</span><span>{visibleMarkers.length} marcadores exibidos</span></div>
           </div>
+          <div className="mt-3 flex items-center justify-between rounded-lg border border-white/15 bg-carbon-deep px-4 py-3 text-[10px] font-bold uppercase tracking-[.14em] text-white/60"><span>Mapa de Mato Grosso</span><span>{visibleMarkers.length} marcadores exibidos</span></div>
         </div>
 
         {!compact && <div className="border-t border-black/10 bg-ivory lg:border-l lg:border-t-0">{selected ? <LocationPanel location={selected} compact={false} /> : <div className="p-8 text-muted">Selecione uma cidade no mapa ou na busca.</div>}</div>}

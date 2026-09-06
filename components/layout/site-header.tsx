@@ -90,11 +90,12 @@ export function SiteHeader() {
                 alt="Gercadi Transportes e Logística — 100% Mato Grosso"
                 width={1920}
                 height={594}
+                sizes="(max-width: 639px) 142px, 160px"
+                loading="eager"
                 className={cn(
                   "h-auto w-[142px] transition-[width] duration-200 sm:w-[160px]",
                   scrolled && "md:w-[148px]",
                 )}
-                priority
               />
             </Link>
 

@@ -31,7 +31,7 @@ export function PageHero({
             src={image}
             alt={imageAlt}
             fill
-            priority
+            preload
             sizes="100vw"
             className="page-hero-media object-cover object-center opacity-45 grayscale-[15%]"
           />

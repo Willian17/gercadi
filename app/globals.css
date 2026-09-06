@@ -157,15 +157,13 @@ button, a, summary { touch-action: manipulation; }
 
 .route-line {
   stroke-dasharray: 10 12;
-  animation: route-draw 900ms cubic-bezier(.2,.75,.2,1) both, route-flow 12s linear 900ms infinite;
+  animation: route-appear 700ms ease-out both;
 }
 
-@keyframes route-draw {
-  from { opacity: 0; stroke-dashoffset: 180; }
-  to { opacity: 1; stroke-dashoffset: 0; }
+@keyframes route-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-
-@keyframes route-flow { to { stroke-dashoffset: -220; } }
 
 .mobile-menu-overlay[data-state="open"] { animation: menu-overlay-in 180ms ease-out both; }
 .mobile-menu-overlay[data-state="closed"] { animation: menu-overlay-out 140ms ease-in both; }
@@ -190,8 +188,8 @@ button, a, summary { touch-action: manipulation; }
 }
 
 @keyframes hero-title-in {
-  from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(24px); }
-  to { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes hero-media-in {
@@ -210,8 +208,8 @@ button, a, summary { touch-action: manipulation; }
 .hero-title-line:nth-child(3) { animation-delay: 380ms; }
 
 @keyframes hero-title-line-in {
-  from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(24px); }
-  to { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-delay-1 { --reveal-delay: 70ms; }
@@ -280,7 +278,6 @@ button, a, summary { touch-action: manipulation; }
 
 .coverage-boundary {
   stroke-dasharray: 6 4;
-  animation: territory-boundary 900ms ease-out both;
 }
 
 .map-marker-active > span {
@@ -289,10 +286,6 @@ button, a, summary { touch-action: manipulation; }
 
 @keyframes territory-in {
   from { opacity: 0; transform: scale(.975); }
-}
-
-@keyframes territory-boundary {
-  from { opacity: 0; stroke-dashoffset: 80; }
 }
 
 @keyframes marker-signal {
@@ -311,16 +304,13 @@ button, a, summary { touch-action: manipulation; }
   }
 
   [data-reveal="media"] {
-    clip-path: inset(0 0 12% 0);
     transform: translateY(18px) scale(1.015);
     transition:
-      clip-path 720ms cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms),
       opacity 480ms ease-out var(--reveal-delay, 0ms),
       transform 720ms cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms);
   }
 
   [data-reveal][data-reveal-visible="true"] {
-    clip-path: inset(0 0 0 0);
     opacity: 1;
     transform: translateY(0) scale(1);
   }
@@ -371,6 +361,10 @@ input, textarea, select { font: inherit; }
 @media (min-width: 768px) {
   .site-container { width: min(100% - 4rem, 86rem); }
   .paper-grid { background-size: calc(100% / 12) 100%; }
+}
+
+@media (max-width: 767px) {
+  .map-marker-active > span { animation: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

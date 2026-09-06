@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <section className="route-grid relative isolate -mt-20 min-h-[calc(100svh+2rem)] overflow-hidden bg-carbon-deep text-white md:-mt-24">
-        <Image src="/images/company/caminhao-gercadi-estrada.jpg" alt="Caminhão da Gercadi em operação ao pôr do sol" fill priority sizes="100vw" className="page-hero-media object-cover object-[62%_center] opacity-70" />
+        <Image src="/images/company/caminhao-gercadi-estrada.jpg" alt="Caminhão da Gercadi em operação ao pôr do sol" fill preload sizes="100vw" className="page-hero-media object-cover object-[62%_center] opacity-70" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#090c0a_0%,rgba(9,12,10,.92)_42%,rgba(9,12,10,.35)_78%,rgba(9,12,10,.55)_100%)]" />
         <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-55" viewBox="0 0 1440 900" fill="none" aria-hidden="true">
           <path className="route-line" d="M-80 735C214 677 324 787 507 643C713 481 772 332 1035 263C1194 221 1282 129 1511 56" stroke="#C91D24" strokeWidth="3" />
