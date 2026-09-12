@@ -126,7 +126,7 @@ for (const row of parseRows(csv)) {
     slug: unit?.slug,
     name: unit?.name ?? row.city,
     kind: unit ? "unit" : "served",
-    schedule: row.schedule || undefined,
+    schedule: unit?.slug === "cuiaba" ? "DIÁRIO" : row.schedule || undefined,
     region: activeRegion,
     hubName: unit ? undefined : activeHub?.name,
     hubSlug: unit ? undefined : activeHub?.slug,

@@ -22,6 +22,7 @@ export const mainNavigation = [
   { label: "24 Horas", href: "/24horas" },
   { label: "Coleta", href: "/coleta" },
   { label: "Fale Conosco", href: "/fale-conosco" },
+  { label: "Seja Parceiro", href: "/seja-parceiro" },
 ] as const;
 
 export const serviceNavigation = [
@@ -56,4 +57,3 @@ export const services = [
     href: "/24horas",
   },
 ] as const;
-

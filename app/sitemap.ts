@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 import { units } from "@/data/units";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/empresa", "/frota", "/nossas-unidades", "/express", "/seja-parceiro", "/24horas", "/coleta", "/fale-conosco", "/cotacao"];
   const pages: MetadataRoute.Sitemap = routes.map((route) => ({
@@ -16,4 +18,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
   return [...pages, ...unitPages];
 }
-

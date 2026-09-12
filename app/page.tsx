@@ -27,7 +27,7 @@ export default function Home() {
         <div className="site-container relative z-10 flex min-h-[calc(100svh+2rem)] items-end pb-10 pt-44 sm:pb-14 md:pt-48 lg:pb-20">
           <div className="w-full">
             <div className="hero-eyebrow mb-8 flex items-center gap-4 text-[10px] font-extrabold uppercase tracking-[.25em] text-white/65"><span className="h-px w-12 bg-action-red" />Gercadi • Transporte e logística</div>
-            <h1 className="hero-title hero-title-lines display-condensed max-w-[980px] text-[clamp(3.5rem,7.5vw,7rem)] uppercase">
+            <h1 className="hero-title hero-title-lines display-condensed max-w-[980px] text-[clamp(3.5rem,7.5vw,7rem)] uppercase lg:text-[clamp(4rem,6.5vw,6rem)]">
               <span className="hero-title-line">Mato Grosso</span><span className="hero-title-line text-white/36">não para.</span><span className="hero-title-line">Sua carga também não.</span>
             </h1>
             <div className="hero-copy mt-10 grid gap-8 border-t border-white/20 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -58,7 +58,7 @@ export default function Home() {
           <div className="grid gap-14 lg:grid-cols-12 lg:items-end" data-reveal>
             <div className="lg:col-span-7">
               <p className="eyebrow">Escala que se movimenta</p>
-              <h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon">Presença.<br />Ritmo.<br /><span className="text-action-red">Conexão.</span></h2>
+              <h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon lg:text-[clamp(3rem,4.8vw,4.25rem)]">Presença.<br />Ritmo.<br /><span className="text-action-red">Conexão.</span></h2>
             </div>
             <p className="max-w-lg border-l-2 border-action-red pl-6 text-lg leading-8 text-muted lg:col-span-4 lg:col-start-9">Uma estrutura construída para manter empresa e cliente conectados durante cada etapa do transporte.</p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
       <section className="bg-carbon text-white">
         <div className="site-container py-20 sm:py-28">
           <div className="flex flex-col gap-6 border-b border-white/15 pb-12 md:flex-row md:items-end md:justify-between" data-reveal>
-            <div><p className="eyebrow eyebrow-inverse">Soluções em campo</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase">Cada carga pede<br /><span className="text-white/35">um movimento.</span></h2></div>
+            <div><p className="eyebrow eyebrow-inverse">Soluções em campo</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase lg:text-[clamp(3rem,4.8vw,4.25rem)]">Cada carga pede<br /><span className="text-white/35">um movimento.</span></h2></div>
             <p className="max-w-sm text-base leading-7 text-white/62">Quatro frentes operacionais apresentadas com clareza, sem esconder o caminho para falar com nossa equipe.</p>
           </div>
 
@@ -93,7 +93,7 @@ export default function Home() {
                   </div>
                   <div className={`md:col-span-5 ${index % 2 ? "md:col-start-1 md:row-start-1" : "md:col-start-7"}`}>
                     <span className="font-mono text-xs text-action-red">{service.index} / 04</span>
-                    <h3 className="mt-5 text-4xl font-extrabold tracking-[-.055em] sm:text-5xl">{service.title}</h3>
+                    <h3 className="mt-5 text-4xl font-extrabold tracking-[-.055em] sm:text-5xl lg:text-[2.75rem]">{service.title}</h3>
                     <p className="mt-5 max-w-lg text-base leading-7 text-white/62">{service.text}</p>
                     <Link href={service.href} className="mt-8 inline-flex min-h-12 items-center gap-3 border-b border-white/35 text-sm font-extrabold transition-colors hover:border-action-red hover:text-action-red">Conhecer esta solução <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></Link>
                   </div>
@@ -104,21 +104,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="paper-grid section-space bg-ivory">
-        <div className="site-container grid gap-14 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-5" data-reveal>
-            <p className="eyebrow">Presença regional</p>
-            <h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon">23 pontos.<br /><span className="text-tracking-green">Um estado.</span></h2>
-            <p className="mt-8 max-w-md text-lg leading-8 text-muted">Encontre o contato da unidade mais próxima ou consulte a relação de cidades atendidas e prazos operacionais.</p>
-            <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg"><Link href="/nossas-unidades">Encontrar unidade <ArrowRight className="size-4" /></Link></Button><Button asChild variant="outline" size="lg"><a href={siteConfig.coverageSheetUrl} target="_blank" rel="noopener noreferrer">Cidades e prazos</a></Button></div>
-          </div>
-          <DeferredCoverageMap compact className="lg:col-span-6 lg:col-start-7" />
+      <section className="paper-grid bg-ivory py-20 sm:py-24 lg:py-28">
+        <div className="site-container">
+          <DeferredCoverageMap
+            compact
+            intro={
+              <div>
+                <p className="eyebrow">Presença regional</p>
+                <h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon lg:text-[clamp(3rem,4.8vw,4.25rem)]">23 pontos.<br /><span className="text-tracking-green">Um estado.</span></h2>
+                <p className="mt-6 max-w-md text-base leading-7 text-muted">Encontre o contato da unidade mais próxima ou consulte a relação de cidades atendidas e prazos operacionais.</p>
+                <div className="mt-7 flex flex-wrap gap-3"><Button asChild size="lg"><Link href="/nossas-unidades">Encontrar unidade <ArrowRight className="size-4" /></Link></Button><Button asChild variant="outline" size="lg"><a href={siteConfig.coverageSheetUrl} target="_blank" rel="noopener noreferrer">Cidades e prazos</a></Button></div>
+              </div>
+            }
+          />
         </div>
       </section>
 
       <section className="section-space overflow-hidden bg-paper">
         <div className="site-container">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end" data-reveal><div className="lg:col-span-7"><p className="eyebrow">Estrutura em movimento</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon">Da base<br />para a estrada.</h2></div><p className="max-w-md text-lg leading-8 text-muted lg:col-span-4 lg:col-start-9">Frota e infraestrutura conectadas à presença regional para manter a operação avançando.</p></div>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end" data-reveal><div className="lg:col-span-7"><p className="eyebrow">Estrutura em movimento</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon lg:text-[clamp(3rem,4.8vw,4.25rem)]">Da base<br />para a estrada.</h2></div><p className="max-w-md text-lg leading-8 text-muted lg:col-span-4 lg:col-start-9">Frota e infraestrutura conectadas à presença regional para manter a operação avançando.</p></div>
           <div className="mt-16 grid gap-4 md:grid-cols-12 md:grid-rows-[300px_300px]" data-reveal="media">
             <figure className="image-reveal relative min-h-80 overflow-hidden rounded-2xl md:col-span-7 md:row-span-2"><Image src="/images/company/frota-centro-operacional.jpg" alt="Frota da Gercadi no centro operacional" fill sizes="(max-width:768px) 100vw, 58vw" className="object-cover" /><figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-carbon-deep/90 to-transparent p-6 pt-24 text-sm font-bold text-white">Centro operacional • Frota Gercadi</figcaption></figure>
             <figure className="image-reveal relative min-h-72 overflow-hidden rounded-2xl md:col-span-5"><Image src="/images/company/carreta-gercadi.jpg" alt="Carreta da Gercadi" fill sizes="(max-width:768px) 100vw, 42vw" className="object-cover" /><figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-carbon-deep/85 to-transparent p-5 pt-20 text-sm font-bold text-white">Capacidade para diferentes operações</figcaption></figure>
@@ -129,7 +133,7 @@ export default function Home() {
 
       <section className="route-grid bg-carbon-deep py-20 text-white sm:py-28">
         <div className="site-container grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-5" data-reveal><p className="eyebrow eyebrow-inverse">Central de acompanhamento</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase">Onde está<br /><span className="text-white/35">sua carga?</span></h2><p className="mt-7 max-w-md text-base leading-7 text-white/62">Tenha em mãos o CNPJ ou CPF do remetente e o número da nota fiscal, pedido ou coleta.</p></div>
+          <div className="lg:col-span-5" data-reveal><p className="eyebrow eyebrow-inverse">Central de acompanhamento</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase lg:text-[clamp(3rem,4.8vw,4.25rem)]">Onde está<br /><span className="text-white/35">sua carga?</span></h2><p className="mt-7 max-w-md text-base leading-7 text-white/62">Tenha em mãos o CNPJ ou CPF do remetente e o número da nota fiscal, pedido ou coleta.</p></div>
           <div className="rounded-2xl border border-white/15 bg-white/[.04] p-5 sm:p-8 lg:col-span-6 lg:col-start-7" data-reveal>
             <div className="flex items-center justify-between border-b border-white/15 pb-5"><span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[.16em]"><span className="size-2 rounded-full bg-[#63d77a]" />Sistema SSW</span><span className="font-mono text-[10px] text-white/45">ACESSO EXTERNO</span></div>
             <div className="grid gap-3 py-8 sm:grid-cols-3">{[[ShieldCheck,"Acesso seguro"],[PackageCheck,"Consulta objetiva"],[Route,"Acompanhamento"]].map(([I,t])=>{const Icon=I as typeof ShieldCheck;return <div key={String(t)} className="border-l border-white/15 pl-4"><Icon className="size-5 text-white/55" /><p className="mt-4 text-sm font-bold">{String(t)}</p></div>})}</div>
@@ -140,7 +144,7 @@ export default function Home() {
 
       <section className="paper-grid section-space bg-ivory" id="cotacao">
         <div className="site-container grid gap-14 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-5 lg:sticky lg:top-32" data-reveal><p className="eyebrow">Assistente de rota</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon">Conte<br />o caminho.</h2><p className="mt-7 max-w-md text-lg leading-8 text-muted">Organize os dados essenciais da operação. Ao concluir, a conversa segue diretamente no WhatsApp da Gercadi.</p><div className="mt-10 flex items-center gap-4 border-t border-black/15 pt-6 text-xs font-bold uppercase tracking-[.14em] text-muted"><span className="flex size-8 items-center justify-center rounded-full bg-carbon text-white">1</span> Rota <span className="h-px flex-1 bg-border" /><span className="flex size-8 items-center justify-center rounded-full border border-black/20">2</span> Contato</div></div>
+          <div className="lg:col-span-5 lg:sticky lg:top-32" data-reveal><p className="eyebrow">Assistente de rota</p><h2 className="display-condensed text-[clamp(3.25rem,5.8vw,5rem)] uppercase text-carbon lg:text-[clamp(3rem,4.8vw,4.25rem)]">Conte<br />o caminho.</h2><p className="mt-7 max-w-md text-lg leading-8 text-muted">Organize os dados essenciais da operação. Ao concluir, a conversa segue diretamente no WhatsApp da Gercadi.</p><div className="mt-10 flex items-center gap-4 border-t border-black/15 pt-6 text-xs font-bold uppercase tracking-[.14em] text-muted"><span className="flex size-8 items-center justify-center rounded-full bg-carbon text-white">1</span> Rota <span className="h-px flex-1 bg-border" /><span className="flex size-8 items-center justify-center rounded-full border border-black/20">2</span> Contato</div></div>
           <div className="lg:col-span-6 lg:col-start-7" data-reveal><QuotationForm /></div>
         </div>
       </section>
@@ -148,7 +152,7 @@ export default function Home() {
       <section className="bg-paper py-20 sm:py-28">
         <div className="site-container grid overflow-hidden rounded-2xl bg-forest text-white lg:grid-cols-2" data-reveal="media">
           <div className="image-reveal relative min-h-[420px]"><Image src="/images/company/matriz-cuiaba.jpg" alt="Matriz da Gercadi em Cuiabá" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" /></div>
-          <div className="flex flex-col justify-center p-7 sm:p-12 lg:p-16"><p className="eyebrow eyebrow-inverse">Mais de 35 anos</p><h2 className="text-4xl font-extrabold tracking-[-.05em] sm:text-5xl">Experiência construída em movimento.</h2><p className="mt-6 max-w-lg text-base leading-7 text-white/68">O grupo Gercadi atua no transporte e na logística com equipe capacitada e presença regional para manter empresa e cliente conectados.</p><div className="mt-9"><Button asChild variant="light" size="lg"><Link href="/empresa">Conhecer nossa história <ArrowRight className="size-4" /></Link></Button></div></div>
+          <div className="flex flex-col justify-center p-7 sm:p-12 lg:p-16"><p className="eyebrow eyebrow-inverse">Mais de 35 anos</p><h2 className="text-4xl font-extrabold tracking-[-.05em] sm:text-5xl lg:text-[2.75rem]">Experiência construída em movimento.</h2><p className="mt-6 max-w-lg text-base leading-7 text-white/68">O grupo Gercadi atua no transporte e na logística com equipe capacitada e presença regional para manter empresa e cliente conectados.</p><div className="mt-9"><Button asChild variant="light" size="lg"><Link href="/empresa">Conhecer nossa história <ArrowRight className="size-4" /></Link></Button></div></div>
         </div>
       </section>
     </>

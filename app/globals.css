@@ -280,7 +280,7 @@ button, a, summary { touch-action: manipulation; }
   stroke-dasharray: 6 4;
 }
 
-.map-marker-active > span {
+.map-marker-active > [data-marker-dot] {
   animation: marker-signal 700ms cubic-bezier(.2,.75,.2,1) both;
 }
 
@@ -364,7 +364,7 @@ input, textarea, select { font: inherit; }
 }
 
 @media (max-width: 767px) {
-  .map-marker-active > span { animation: none; }
+  .map-marker-active > [data-marker-dot] { animation: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -221,23 +221,6 @@ export function SiteHeader() {
                       </Link>
                     </SheetClose>
                   ))}
-                  <SheetClose asChild>
-                    <Link
-                      href="/seja-parceiro"
-                      aria-current={
-                        isActive("/seja-parceiro") ? "page" : undefined
-                      }
-                      className={cn(
-                        "flex min-h-14 items-center justify-between border-b border-border text-lg font-bold text-ink transition-colors hover:text-action-red",
-                        isActive("/seja-parceiro") && "text-action-red",
-                      )}
-                    >
-                      <span>Seja Parceiro</span>
-                      <span className="font-mono text-[10px] text-muted">
-                        08
-                      </span>
-                    </Link>
-                  </SheetClose>
                 </nav>
                 <div className="mt-8 grid gap-3">
                   <QuoteLink className="w-full" />

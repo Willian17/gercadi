@@ -24,7 +24,7 @@ export default function UnitsPage() {
       </section>
       <section className="section-space bg-white">
         <div className="site-container flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <div className="max-w-2xl"><p className="eyebrow">Área de atendimento</p><h2 className="text-3xl font-bold tracking-[-0.035em] text-ink sm:text-4xl">Consulte cidades atendidas e prazos operacionais</h2><p className="mt-4 leading-7 text-muted">A relação completa está disponível em uma planilha externa e é atualizada pela operação da Gercadi.</p></div>
+          <div className="max-w-2xl"><p className="eyebrow">Área de atendimento</p><h2 className="text-3xl font-bold tracking-[-0.035em] text-ink sm:text-4xl lg:text-[2rem]">Consulte cidades atendidas e prazos operacionais</h2><p className="mt-4 leading-7 text-muted">A relação completa está disponível em uma planilha externa e é atualizada pela operação da Gercadi.</p></div>
           <Button asChild variant="outline" size="lg"><a href={siteConfig.coverageSheetUrl} target="_blank" rel="noopener noreferrer">Abrir lista de atendimento <ExternalLink className="size-4" /></a></Button>
         </div>
       </section>

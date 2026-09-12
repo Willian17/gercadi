@@ -36,7 +36,7 @@ export default function FleetPage() {
           <figure className="image-reveal overflow-hidden rounded-lg bg-white reveal-delay-2" data-reveal="media"><div className="relative aspect-[5/3]"><Image src="/images/company/caminhao-gercadi-estrada.jpg" alt="Caminhão urbano da Gercadi em estrada de Mato Grosso" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div><figcaption className="p-5 text-sm text-muted">Atuação em rotas urbanas e rodoviárias.</figcaption></figure>
         </div>
       </section>
-      <section className="section-space bg-forest text-white"><div className="site-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"><div><p className="eyebrow text-[#8ee49b]">Sua carga</p><h2 className="text-3xl font-bold tracking-[-0.035em] sm:text-4xl">Consulte a solução adequada para a sua operação.</h2></div><QuoteLink size="lg" /></div></section>
+      <section className="section-space bg-forest text-white"><div className="site-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"><div><p className="eyebrow text-[#8ee49b]">Sua carga</p><h2 className="text-3xl font-bold tracking-[-0.035em] sm:text-4xl lg:text-[2rem]">Consulte a solução adequada para a sua operação.</h2></div><QuoteLink size="lg" /></div></section>
     </>
   );
 }

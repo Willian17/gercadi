@@ -41,7 +41,7 @@ export default function CompanyPage() {
           })}
         </div>
       </section>
-      <section className="section-space bg-forest text-white"><div className="site-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"><div><p className="eyebrow text-[#8ee49b]">Próximo passo</p><h2 className="max-w-2xl text-3xl font-bold tracking-[-0.035em] sm:text-4xl">Leve a experiência da Gercadi para a sua próxima rota.</h2></div><QuoteLink size="lg" /></div></section>
+      <section className="section-space bg-forest text-white"><div className="site-container flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"><div><p className="eyebrow text-[#8ee49b]">Próximo passo</p><h2 className="max-w-2xl text-3xl font-bold tracking-[-0.035em] sm:text-4xl lg:text-[2rem]">Leve a experiência da Gercadi para a sua próxima rota.</h2></div><QuoteLink size="lg" /></div></section>
     </>
   );
 }
