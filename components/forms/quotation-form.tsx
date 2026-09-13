@@ -10,10 +10,27 @@ import { siteConfig } from "@/data/site";
 import { createWhatsappUrl, openWhatsapp } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
-export function QuotationForm({ inverse = false, defaultDestination }: { inverse?: boolean; defaultDestination?: string }) {
+type QuotationFormService = "quote" | "collection";
+
+export function QuotationForm({
+  inverse = false,
+  defaultDestination,
+  service = "quote",
+}: {
+  inverse?: boolean;
+  defaultDestination?: string;
+  service?: QuotationFormService;
+}) {
   const [step, setStep] = useState<1 | 2>(1);
   const [submitted, setSubmitted] = useState(false);
   const contactHeadingRef = useRef<HTMLHeadingElement>(null);
+  const isCollection = service === "collection";
+  const serviceLabel = isCollection ? "Solicitação de coleta" : "Cotação de transporte";
+  const formTitle = isCollection ? "Organize sua coleta" : "Monte sua rota";
+  const routePrompt = isCollection ? "De onde para onde vai sua carga?" : "Para onde sua carga vai?";
+  const routeDescription = isCollection
+    ? "Informe a rota e o tipo de carga para iniciarmos sua solicitação."
+    : "Informe a rota e o tipo de carga para iniciarmos sua cotação.";
 
   useEffect(() => {
     if (step === 2) {
@@ -60,7 +77,7 @@ export function QuotationForm({ inverse = false, defaultDestination }: { inverse
       return "";
     };
     const message = [
-      "Olá! Gostaria de solicitar uma cotação de transporte.",
+      isCollection ? "Olá! Gostaria de solicitar uma coleta." : "Olá! Gostaria de solicitar uma cotação de transporte.",
       "",
       "Nome: " + value("nome"),
       "Empresa: " + (value("empresa") || "Não informado"),
@@ -72,7 +89,7 @@ export function QuotationForm({ inverse = false, defaultDestination }: { inverse
     ].join("\n");
 
     setSubmitted(true);
-    openWhatsapp(createWhatsappUrl(siteConfig.quoteWhatsapp, message));
+    openWhatsapp(createWhatsappUrl(isCollection ? siteConfig.collectionWhatsapp : siteConfig.quoteWhatsapp, message));
   }
 
   return (
@@ -85,8 +102,8 @@ export function QuotationForm({ inverse = false, defaultDestination }: { inverse
     >
       <div className="mb-7 flex items-start justify-between gap-4 border-b border-border pb-5">
         <div>
-          <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-action-red">Cotação de transporte</p>
-          <h3 className="mt-2 text-2xl font-extrabold tracking-[-.04em]">Monte sua rota</h3>
+          <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-action-red">{serviceLabel}</p>
+          <h3 className="mt-2 text-2xl font-extrabold tracking-[-.04em]">{formTitle}</h3>
         </div>
         <span className="pt-1 font-mono text-xs text-muted" aria-label={"Etapa " + step + " de 2"}>
           0{step} / 02
@@ -127,8 +144,8 @@ export function QuotationForm({ inverse = false, defaultDestination }: { inverse
       <fieldset data-quote-step="1" disabled={step !== 1} hidden={step !== 1}>
         <legend className="sr-only">Dados da rota</legend>
         <div className="mb-5">
-          <p className="text-sm font-bold">Para onde sua carga vai?</p>
-          <p className="mt-1 text-sm leading-6 text-muted">Informe a rota e o tipo de carga para iniciarmos sua cotação.</p>
+          <p className="text-sm font-bold">{routePrompt}</p>
+          <p className="mt-1 text-sm leading-6 text-muted">{routeDescription}</p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field id="quote-origin" label="Origem *">
@@ -197,7 +214,11 @@ export function QuotationForm({ inverse = false, defaultDestination }: { inverse
         Ao continuar, o WhatsApp será aberto com os dados preenchidos. Nenhuma informação é armazenada neste site.
       </p>
       <p aria-live="polite" className="mt-2 text-sm font-semibold text-tracking-green">
-        {submitted ? "Cotação preparada. Continue o atendimento no WhatsApp." : ""}
+        {submitted
+          ? isCollection
+            ? "Solicitação preparada. Continue o atendimento no WhatsApp."
+            : "Cotação preparada. Continue o atendimento no WhatsApp."
+          : ""}
       </p>
     </form>
   );

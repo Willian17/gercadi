@@ -221,7 +221,7 @@ export function CoverageMap({ compact = false, className, intro }: CoverageMapPr
       <div className={compact ? "grid gap-6 lg:grid-cols-[minmax(17rem,0.72fr)_minmax(0,1.28fr)] lg:items-start lg:gap-8" : "w-full"}>
         {compact && intro && <div className="lg:col-start-1 lg:row-start-1">{intro}</div>}
 
-        <div className={`grid overflow-hidden rounded-2xl ${compact ? "bg-forest text-white lg:col-start-2 lg:row-span-2 lg:row-start-1" : "border border-black/10 bg-white lg:grid-cols-[minmax(0,1.55fr)_minmax(20rem,1fr)] xl:grid-cols-[minmax(0,42rem)_minmax(22rem,1fr)]"}`}>
+        <div className={`grid overflow-hidden rounded-2xl ${compact ? "bg-forest text-white lg:col-start-2 lg:row-span-2 lg:row-start-1" : "border border-black/10 bg-white lg:grid-cols-[minmax(0,1.55fr)_minmax(20rem,1fr)] xl:grid-cols-[minmax(0,36rem)_minmax(22rem,1fr)]"}`}>
           <div className={`relative min-w-0 ${compact ? "p-4 sm:p-5 lg:p-6" : "p-5 sm:p-6"}`}>
             <div className={`relative z-20 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between ${compact ? "" : "w-full"}`}>
               <div><p className={`text-[10px] font-extrabold uppercase tracking-[.2em] ${compact ? "text-white/55" : "text-muted"}`}>Cobertura Gercadi</p><p className="mt-2 text-sm font-bold">{unitsCount} filiais · {servedCount} cidades atendidas</p></div>
